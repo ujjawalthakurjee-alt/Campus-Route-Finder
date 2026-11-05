@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Route Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="head">
+        <img src="images/compass_black_transparent.png" alt="" class="logo">
+        <div class="head-text">
+            <h1>Campus route</h1>
+            <h4>powered by Sai Varun and Ujjawal</h4>
+        </div>
+        <img src="images/Maulana Azad Institute Emblem.png" alt="" class="logo">
+
+    </div>
+    <main>
+        <div>
+            <div class="box">
+                <h2>Add Campus Location</h2>
+                <label>Name of the location</label><input id="locName" placeholder="NTB">
+                <div id="polarBox">
+                    <label>Distance from</label><select id="lRef"></select>
+                    <div class="row">
+                        <div><label>Direction(N=0,E=90)</label><input id="lAngle" type="number" value="90"></div>
+                        <div><label>Distance (m)</label><input id="lDist" type="number" min="1" value="100"></div>
+
+                    </div>
+                    <label><input id="lLink" class="s" type="checkbox" checked style="width:auto"> Also add a pathway from it</label>
+                </div>
+                <div class="legend" id="firstHint">first location at starting of map</div>
+                <button onclick="addLocation()">Add location</button>
+            </div>
+            <div class="box">
+                <h2>Pathways</h2>
+                <label>From</label><select id="pFrom"></select>
+                <label>To</label><select id="pTo"></select>
+                <label>Distance (metres)</label><input id="pDist" type="number" min="1" value="100">
+                <div class="row">
+                    <button onclick="addpath()">Add</button>
+                    <button class="warn" onclick="act('block')">Block</button>
+                    <button class="alt" onclick="act('reopen')">Reopen</button>
+                    <button class="alt" onclick="act('remove')">Remove</button>
+                </div>
+
+            </div>
+            <div class="box">
+                <label>Start</label><select id="rFrom"></select>
+                <label>Destination</label><select id="rTo"></select>
+                <div class="row">
+                    <button onclick="findRoute()">Find route</button>
+                    <button class="alt" onclick="checkConnected()">Connected?</button>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="box">
+                <h2>Campus map</h2>
+                <svg id="map" viewBox="0 0 700 440" role="img" aria-label="Campus network graph"></svg>
+                <div class="legend">Solid brown: open pathway · Red cross, dashed: blocked · Blue: selected route</div>
+            </div>
+            <div class="box">
+                <h2>Result</h2>
+                <pre id="log">Ready.</pre>
+            </div>
+            <div class="box">
+                <h2>Adjacency list</h2>
+                <table id="adj"></table>
+            </div>
+        </div>
+    </main>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
